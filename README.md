@@ -1,1 +1,1 @@
-# Namaste React by Akshay Saini sir 🚀g
+# Namaste React by Akshay Saini sir 🚀
