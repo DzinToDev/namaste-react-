@@ -1,0 +1,22 @@
+{
+  "name": "namaste-react-ep02",
+  "version": "1.0.0",
+  "description": "This is namaste react ep02",
+  "main": "App.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DzinToDev/namaste-react-.git"
+  },
+  "author": "Mahesh DezinToDev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DzinToDev/namaste-react-/issues"
+  },
+  "homepage": "https://github.com/DzinToDev/namaste-react-#readme",
+  "devDependencies": {
+    "parcel": "^2.13.3"
+  }
+}
