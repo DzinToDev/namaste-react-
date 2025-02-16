@@ -84,3 +84,73 @@ A: NPM checks the package.json of Parcel to install its required dependencies.
 ## Q: What are the dependencies of Parcel?
 
 A: Parcel relies on tools like Babel, PostCSS, Source Maps, and HMR (Hot Module Replacement).
+
+## Executing our package 
+`npx parcel index.html` npx means executing that package. 
+npm use when we need to install. 
+
+### Why CDN is not a perfect way?  
+- **Fetching from a CDN is a costly operation**.  
+- If the **version** changes, we have to **manually update** the CDN link.  
+- When React is in our **node_modules**, it is **easier** to manage and update.  
+- It is **better** to have React as a **dependency** in our project.  
+
+## Installing React and ReactDOM  
+`npm i react` and `npm i react-dom`
+Now, we install **React** and **ReactDOM** in our **node_modules**.  
+We **no longer** need to use **CDN**.  
+
+CDN was one way to use React, but another and **better** way is **via npm**.  
+At the end of the day, **React is just a JavaScript package**, and it is hosted on **npm**.
+Now, React is installed in node_modules, but the browser doesn't know what React is.
+So, we need to import it in our code.
+
+✅ Importing React and ReactDOM
+We import React and ReactDOM like this:
+`import React from 'react'
+import ReactDOM from 'react-dom'`
+
+But now, the browser will throw an error ❌:
+
+"Uncaught SyntaxError: Cannot use import statement outside a module"
+
+This happens because the browser treats our script as a normal JavaScript file, and in normal JS, import/export is not allowed.
+To fix this, we need to tell the browser that our script is a module by adding:
+`type="module"` 
+Now, React is successfully imported from node_modules! 🎉
+
+## 🚀 What Parcel Does Behind the Scenes
+Parcel is doing a lot of things automatically for us. Here are some of the major features:
+
+- Hot Module Replacement (HMR)
+-- Auto-reload: Automatically refreshes the page when we make changes.
+-- Faster development: We don’t need to manually refresh the browser.
+- File Watching Algorithm
+-- Written in C++, which makes it super-fast.
+-- Watches every file, and as soon as we save changes, it detects them instantly.
+- Development Build Features
+-- Runs a local development server.
+-- Uses caching for faster builds.
+-- Optimizes images automatically.
+- Production Build Features
+-- Minifies and compresses our files to reduce size.
+-- Bundles JavaScript files efficiently.
+-- Uses consistent hashing to manage file versions.
+-- Supports code splitting for better performance.
+-- Tree shaking: Removes unused code to optimize the final build.
+- Error Handling & Debugging
+-- Shows clear error messages when something goes wrong.
+-- Provides detailed diagnostics to help fix issues.
+- Different Builds for Development & Production
+-- Parcel automatically optimizes the app differently for development and production environments.
+- 🥹 Wow, Parcel does so much for us!
+-- It makes our development easier.
+-- It speeds up our application.
+-- It takes care of complex optimizations behind the scenes.
+
+## Targeting Older Browser Versions
+`"browserslist": ["last 2 versions"]`
+This helps to ensure our app works on older browsers as well.
+
+Wow! I have learned so many basic and behind-the-scenes concepts in this episode.
+Now, I understand how React is set up, how Parcel works, and why using npm is better than a CDN. 🚀

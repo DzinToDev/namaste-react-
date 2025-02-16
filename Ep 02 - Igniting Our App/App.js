@@ -1,25 +1,16 @@
-// how to create nested html structure inside react
-/**
- *  <div id="parent">
-            <div id="child">
-                <h1>am h1</h1>
-                <h2>am h1</h2>
-            </div>
-            <div id="child2">
-                <h1>am h1</h1>
-                <h2>am h1</h2>
-            </div>
-        </div>
- */
+import React from "react"; // it is come from our node module
+import ReactDOM from "react-dom/client"; 
 
 const parentDiv = React.createElement("div", { id: "parent" }, [
   React.createElement("div", { id: "child" }, [
-    React.createElement("h1", {}, "I'm nested h1"),
-    React.createElement("h2", {}, "I'm sibling h2"),
+    React.createElement("h1", {}, "This is namaste react"),
+    React.createElement("h2", {}, "we have our own react in local"),
   ]),
   React.createElement("div", { id: "child" }, [
-    React.createElement("h1", {}, "I'm nested h1"),
-    React.createElement("h2", {}, "I'm sibling h2"),
+    React.createElement("h1", {}, "and it is come from our node module"),
+    React.createElement("h2", {}, "Parcel is doing lot of things for us behind the scenes"),
   ]),
 ]);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(parentDiv);
