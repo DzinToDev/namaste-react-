@@ -99,9 +99,9 @@ const RestrauntCard = (props) => {
 const Body = () => {
   return (
     <div className="body">
-      <div className="py-10" style={{ color: "orange" }}>
+      {/* <div className="py-10" style={{ color: "orange" }}>
         serch{" "}
-      </div>
+      </div> */}
       <div className="res-container flex flex-wrap justify-evenly ">
         {/* <RestrauntCard resName="NBC" cuisine="Espresso"   /> */}
         {/* <RestrauntCard resDetails={restData[0]} /> 
