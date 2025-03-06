@@ -1,7 +1,13 @@
 import RestrauntCard from "./RestrauntCard";
 import restData from "../utils/mockData";
 const Body = () => {
-  let loePticeRest = [
+
+  // state variable - for that we use hooks which is known as usestate 
+   
+
+
+
+  let lowPriceRest = [
     {
       name: "Brew Haven",
       cuisine: "Cafe, Desserts",
@@ -33,21 +39,30 @@ const Body = () => {
       deliveryTime: "28 mins",
     },
   ];
+  let empty = [
+    {
+      name: "Brew Haven",
+      cuisine: "Cafe, Desserts",
+      costForTwo: 500,
+      deliveryTime: "30 mins",
+    },
+  ];
 
   return (
     <div className="body">
       <button
         onClick={() => {
           // console.log("top resto");
-          loePticeRest = loePticeRest.filter((res) => res.costForTwo <= 400);
-          console.log(loePticeRest); // Filtered list ko print karega
+          lowPriceRest = lowPriceRest.filter(
+            (res) => res.costForTwo <= 400);
+          console.log(lowPriceRest); // Filtered list ko print karega
         }}
         className="filter-top-resto-button p-2 bg-amber-100-300 rounded-xl my-3"
       >
         click
       </button>
       <div className="res-container flex flex-wrap justify-evenly ">
-        {loePticeRest.map((restraunt, index) => (
+        {lowPriceRest.map((restraunt, index) => (
           <RestrauntCard key={index} resDetails={restraunt} />
         ))}
       </div>
