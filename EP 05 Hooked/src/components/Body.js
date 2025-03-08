@@ -1,11 +1,10 @@
 import RestrauntCard from "./RestrauntCard";
 import restData from "../utils/mockData";
-import { useState } from "react"; // we import this useState from React as named import.
+import { useState, useEffect } from "react"; // we import this useState from React as named import.
 const Body = () => {
-
   // local state variable - for that we use hooks which is known as usestate
-  const [lowPriceRest, setLowPriceRest] = useState(restData);
-  // const arr = useState(initialval) this is noamrla aray destructuring. this is behind the secene 
+  const [listOfRestaurants, setListOfRestaurants] = useState(restData);
+  // const arr = useState(initialval) this is noamrla aray destructuring. this is behind the secene
   // const [one, setOne] = arr
   // const one = arr[0];
   // const setOne = arr[1];
@@ -46,27 +45,45 @@ const Body = () => {
   //   },
   // ];
 
+  useEffect(() => {
+    fetchData();
+  }, []);
+  // console.log("first body render then useEffect called");
+  const fetchData = async () => {
+    const data = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.624480699999999&page_type=DESKTOP_WEB_LISTING"
+    );
+    const json = await data.json();
+    // console.log(json);
+    // setListOfRestaurants(json.data.cards[2].data);
+    // setListOfRestaurants(json?.data?.cards[2]?.data?.data?.cards);
+    // console.log(json.data.cards);
+  };
+
+  // conditional rendering - rendering basis of condition is condition rendering.
+  // if(listOfRestaurants.length=== 0){
+  //       return <Shimmer /> // * Loading state when data is not loaded yet.
+  // }
+
   return (
     <div className="body">
       <button
+        className="filter-btn border px-4 mb-6 bg-zinc-300 "
         onClick={() => {
-          // console.log("top resto");
-          // lowPriceRest = lowPriceRest.filter(
-          //   (res) => res.costForTwo <= 400);
-          // console.log(lowPriceRest); // Filtered list ko print karega
-          const filetredList = lowPriceRest.filter(
-            (res) => res.costForTwo <= 400
+          // * Filter logic
+          const filteredList = listOfRestaurants.filter(
+            (res) => res.data.avgRating > 4
           );
-          setLowPriceRest(filetredList);
-          // when ever i click on this button new object is formed and react find out diff btwn these two obj then it actually updates the dom. 
+
+          setListOfRestaurants(filteredList);
+          // console.log(filteredList);
         }}
-        className="filter-top-resto-button py-1 bg-amber-100-300 rounded-xl my-3 border px-4 bg-zinc-200"
       >
-        filter low price
+        Top Rated Restaurants
       </button>
-      <div className="res-container flex flex-wrap justify-evenly ">
-        {lowPriceRest.map((restraunt, index) => (
-          <RestrauntCard key={index} resDetails={restraunt} />
+      <div className="res-container flex flex-wrap justify-evenly gap-7">
+        {listOfRestaurants.map((restaurant, index) => (
+          <RestrauntCard key={restaurant.data.id} resData={restaurant} />
         ))}
       </div>
     </div>
