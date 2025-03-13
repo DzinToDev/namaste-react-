@@ -65,22 +65,50 @@ const Body = () => {
   //       return <Shimmer /> // * Loading state when data is not loaded yet.
   // }
 
+  // search
+  const [searchText, setSearchText] = useState("");
+
   return (
     <div className="body">
-      <button
-        className="filter-btn border px-4 mb-6 bg-zinc-300 "
-        onClick={() => {
-          // * Filter logic
-          const filteredList = listOfRestaurants.filter(
-            (res) => res.data.avgRating > 4
-          );
+      <div className="filter-search-container flex justify-between">
+        <div className="search">
+          <input
+            type="text"
+            className="search-box border"
+            // placeholder="search-box"
+            value={searchText}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+          />
+          <button
+            className="border ml-2 px-2"
+            onClick={() => {
+              // Filter the restaurants cards and update the ui
+              console.log(searchText);
+            const filteredRestraunt =  listOfRestaurants.filter((res)=> res.data.name.toLowerCase().includes(searchText.toLowerCase()));
+              setListOfRestaurants(filteredRestraunt);
+            }}
+          >
+            Search
+          </button>
+        </div>
+        <button
+          className="filter-btn border px-4 mb-6 bg-zinc-300 "
+          onClick={() => {
+            // * Filter logic
+            const filteredList = listOfRestaurants.filter(
+              (res) => res.data.avgRating > 4
+            );
 
-          setListOfRestaurants(filteredList);
-          // console.log(filteredList);
-        }}
-      >
-        Top Rated Restaurants
-      </button>
+            setListOfRestaurants(filteredList);
+            // console.log(filteredList);
+          }}
+        >
+          Top Rated Restaurants
+        </button>
+      </div>
+
       <div className="res-container flex flex-wrap justify-evenly gap-7">
         {listOfRestaurants.map((restaurant, index) => (
           <RestrauntCard key={restaurant.data.id} resData={restaurant} />
