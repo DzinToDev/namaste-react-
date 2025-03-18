@@ -5,8 +5,8 @@ const Shimmer = () => {
     <div className="shimmer-container">
       {/* Search Box */}
       <div className="flex justify-between mb-6">
-        <input type="text" className="border px-2 py-1" placeholder="" />
-        <button className="filer-shimmer border px-4 w-42 py-1 bg-gray-300"></button>
+        <input type="text" className="border " placeholder="" />
+        <button className="filer-shimmer border  w-42 bg-gray-300"></button>
       </div>
 
       {/* Shimmer Cards */}
