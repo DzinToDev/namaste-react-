@@ -1,10 +1,13 @@
 import RestrauntCard from "./RestrauntCard";
 import restData from "../utils/mockData";
 import { useState, useEffect } from "react"; // we import this useState from React as named import.
+import Shimmer from "./Shimmer";
 const Body = () => {
   // local state variable - for that we use hooks which is known as usestate
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
+  // search
+  const [searchText, setSearchText] = useState("");
 
   // const arr = useState(initialval) this is noamrla aray destructuring. this is behind the secene
   // const [one, setOne] = arr
@@ -59,8 +62,12 @@ const Body = () => {
     // console.log(json);
     // setListOfRestaurants(json.data.cards[4].data);
     // console.log(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-    setListOfRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-    setFilteredRestaurant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    setListOfRestaurants(
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+    setFilteredRestaurant(
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
     // console.log(json.data.cards);
   };
 
@@ -69,10 +76,9 @@ const Body = () => {
   //       return <Shimmer /> // * Loading state when data is not loaded yet.
   // }
 
-  // search
-  const [searchText, setSearchText] = useState("");
-
-  return (
+  return listOfRestaurants.length === 0 ? (
+    <Shimmer />
+  ) : (
     <div className="body">
       <div className="filter-search-container flex justify-between">
         <div className="search">
