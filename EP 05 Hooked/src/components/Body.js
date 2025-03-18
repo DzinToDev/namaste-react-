@@ -3,7 +3,9 @@ import restData from "../utils/mockData";
 import { useState, useEffect } from "react"; // we import this useState from React as named import.
 const Body = () => {
   // local state variable - for that we use hooks which is known as usestate
-  const [listOfRestaurants, setListOfRestaurants] = useState(restData);
+  const [listOfRestaurants, setListOfRestaurants] = useState([]);
+  const [filteredRestaurant, setFilteredRestaurant] = useState([]);
+
   // const arr = useState(initialval) this is noamrla aray destructuring. this is behind the secene
   // const [one, setOne] = arr
   // const one = arr[0];
@@ -51,12 +53,14 @@ const Body = () => {
   // console.log("first body render then useEffect called");
   const fetchData = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.624480699999999&page_type=DESKTOP_WEB_LISTING"
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.485763&lng=73.804433&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
     // console.log(json);
-    // setListOfRestaurants(json.data.cards[2].data);
-    // setListOfRestaurants(json?.data?.cards[2]?.data?.data?.cards);
+    // setListOfRestaurants(json.data.cards[4].data);
+    // console.log(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    setListOfRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    setFilteredRestaurant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     // console.log(json.data.cards);
   };
 
@@ -86,7 +90,9 @@ const Body = () => {
             onClick={() => {
               // Filter the restaurants cards and update the ui
               console.log(searchText);
-            const filteredRestraunt =  listOfRestaurants.filter((res)=> res.data.name.toLowerCase().includes(searchText.toLowerCase()));
+              const filteredRestraunt = listOfRestaurants.filter((res) =>
+                res.data.name.toLowerCase().includes(searchText.toLowerCase())
+              );
               setListOfRestaurants(filteredRestraunt);
             }}
           >
@@ -102,7 +108,7 @@ const Body = () => {
             );
 
             setListOfRestaurants(filteredList);
-            // console.log(filteredList);
+            console.log(filteredList);
           }}
         >
           Top Rated Restaurants
@@ -110,8 +116,8 @@ const Body = () => {
       </div>
 
       <div className="res-container flex flex-wrap justify-evenly gap-7">
-        {listOfRestaurants.map((restaurant, index) => (
-          <RestrauntCard key={restaurant.data.id} resData={restaurant} />
+        {filteredRestaurant.map((restaurant, index) => (
+          <RestrauntCard key={restaurant.info.id} resData={restaurant} />
         ))}
       </div>
     </div>

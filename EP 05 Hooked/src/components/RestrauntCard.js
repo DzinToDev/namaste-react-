@@ -4,13 +4,13 @@ const RestrauntCard = (props) => {
   const { resData } = props;
   // console.log(resDetails);
   const {
-    
+    cloudinaryImageId,
     name,
     cuisines,
     avgRating,
     costForTwo,
-    deliveryTime,
-  } = resData?.data;
+    sla,
+  } = resData?.info;
   
   const styleCard = {
     backgroundColor: "orange",
@@ -25,8 +25,8 @@ const RestrauntCard = (props) => {
       <h3>{name}</h3>
       <h4>{cuisines.join(", ")}</h4>
       <h4>{avgRating} stars</h4>
-      <h4>₹{costForTwo / 100} FOR TWO</h4>
-      <h4>{deliveryTime} minutes</h4>
+      <h4>{costForTwo}</h4>
+      <h4>{sla.slaString}</h4>
     </div>
   );
 };
