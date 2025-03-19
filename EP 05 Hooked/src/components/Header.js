@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+// import { Link } from "react-router-dom";
 
 const Header = () => {
 
@@ -20,6 +21,7 @@ const Header = () => {
       <div className="nav-right flex gap-10 items-center">
         <ul className="menu flex gap-10">
           <li>
+            {/* <Link to="/">Home</Link> */} 
             <a href="/">Home</a>
           </li>
           <li>

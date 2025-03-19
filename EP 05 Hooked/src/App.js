@@ -3,6 +3,11 @@ import ReactDOM from "react-dom/client";
 import "../index.css";
 import Header from "./components/Header";
 import Body from "./components/Body";
+// import { createBrowserRouter, RouterProvider } from "react-router-dom";
+// import { BrowserRouter } from 'react-router-dom'
+// import { Route, Routes } from "react-router-dom";
+
+
 
 const AppLayout = () => {
   // console.log(<Body />); // This is virtual dom this is object this object is basically react virtual dom like
