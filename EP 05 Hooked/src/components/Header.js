@@ -1,9 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Header = () => {
 
   // let btnName = "Login"
   const [btnName, setBtnName] = useState("Login");
+
+  console.log("Header render");
+
+  useEffect(()=> {
+    // when this useEffect is called ? - if no dependency array then every time component rendered useEffect is called. 
+    console.log("useEffect called from header");
+  }) // here dependency array is not mendetary and if the dependency array is empty then useEffect is called on only initial render just onece. 
 
   return (
     <nav className=" flex justify-between items-center py-6 ">
@@ -27,7 +34,7 @@ const Header = () => {
           // btnName= "LogOut"
           // setBtnName = "LogOut"; we cant directly modify this for that we have 2nd argument fun 
           btnName === "Login" ? setBtnName("Log Out") : setBtnName("Login"); // react updated this btn comp and also refresh the header component. it trigger the reconsiliation cycle.
-          console.log(btnName);
+          // console.log(btnName);
 
         }}
         >{btnName}</button>
