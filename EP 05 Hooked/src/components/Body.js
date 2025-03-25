@@ -2,6 +2,7 @@ import RestrauntCard from "./RestrauntCard";
 import restData from "../utils/mockData";
 import { useState, useEffect } from "react"; // we import this useState from React as named import.
 import Shimmer from "./Shimmer";
+import useOnlineStatus from "../utils/useOnlineStatus";
 const Body = () => {
   // local state variable - for that we use hooks which is known as usestate
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -75,6 +76,10 @@ const Body = () => {
   // if(listOfRestaurants.length=== 0){
   //       return <Shimmer /> // * Loading state when data is not loaded yet.
   // }
+
+  const onlineStatus = useOnlineStatus()
+
+  if(onlineStatus === false) return <h1>are you taking break then drink water 🥤     </h1>
 
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
