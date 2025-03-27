@@ -1,4 +1,4 @@
-import RestrauntCard from "./RestrauntCard";
+import RestrauntCard, { withPromotedLabel } from "./RestrauntCard";
 import restData from "../utils/mockData";
 import { useState, useEffect } from "react"; // we import this useState from React as named import.
 import Shimmer from "./Shimmer";
@@ -9,6 +9,7 @@ const Body = () => {
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   // search
   const [searchText, setSearchText] = useState("");
+  const RestaurantCardPromoted = withPromotedLabel(RestrauntCard);
 
   // const arr = useState(initialval) this is noamrla aray destructuring. this is behind the secene
   // const [one, setOne] = arr
@@ -77,9 +78,10 @@ const Body = () => {
   //       return <Shimmer /> // * Loading state when data is not loaded yet.
   // }
 
-  const onlineStatus = useOnlineStatus()
+  const onlineStatus = useOnlineStatus();
 
-  if(onlineStatus === false) return <h1>are you taking break then drink water 🥤     </h1>
+  if (onlineStatus === false)
+    return <h1>are you taking break then drink water 🥤 </h1>;
 
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
@@ -127,9 +129,12 @@ const Body = () => {
       </div>
 
       <div className="res-container flex flex-wrap justify-evenly gap-7">
-        {filteredRestaurant.map((restaurant, index) => (
-          <RestrauntCard key={restaurant.info.id} resData={restaurant} />
-        ))}
+        {filteredRestaurant.map(
+          (restaurant, index) => (
+            <RestrauntCard key={restaurant.info.id} resData={restaurant} />
+          )
+          // <RestaurantCardPromoted key={restaurant.info.id} resData={restaurant} />
+        )}
       </div>
     </div>
   );

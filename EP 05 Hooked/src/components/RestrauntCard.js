@@ -31,4 +31,15 @@ const RestrauntCard = (props) => {
   );
 };
 
+export const withPromotedLabel = (RestrauntCard) => {
+  return (props) => {
+    return (
+      <div className="">
+        <h5 className="text-red-600">PROMOTED</h5>
+        <RestrauntCard {...props} />
+      </div>
+    )
+  }
+}
+
 export default RestrauntCard;
