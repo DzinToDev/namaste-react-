@@ -133,7 +133,7 @@ const Body = () => {
           (restaurant, index) => (
             <RestrauntCard key={restaurant.info.id} resData={restaurant} />
           )
-          // <RestaurantCardPromoted key={restaurant.info.id} resData={restaurant} />
+          // <RestaurantCardPromoted key={restaurant.info.promoted} resData={restaurant} />
         )}
       </div>
     </div>
